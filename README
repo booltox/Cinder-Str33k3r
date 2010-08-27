@@ -1,1 +1,4 @@
-Str33ker is a lightwriting app that is built using the Cinder library. It simulates long exposure light writing photography.
+Str33ker is a light painting application that is built using the Cinder library. It simulates long exposure light painting photography.
+
+To build this code put it in the samples directory of your cinder heirarchy.
+

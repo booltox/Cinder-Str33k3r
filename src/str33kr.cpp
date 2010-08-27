@@ -1,4 +1,7 @@
 #include "cinder/app/AppBasic.h"
+#include "cinder/gl/gl.h"
+#include "cinder/CinderMath.h"
+#include "cinder/Vector.h"
 #include "cinder/Camera.h"
 #include "cinder/gl/Fbo.h"
 #include "cinder/gl/GlslProg.h"
@@ -9,61 +12,61 @@
 #include "cinder/gl/Texture.h"
 #include "cinder/Capture.h"
 #include "cinder/Text.h"
+#include "cinder/Area.h"
+#include "cinder/Rect.h"
 #include "Resources.h"
 
-#define SIZE 800
+#define WIDTH 800
+#define HEIGHT 600
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+using namespace gl;
 
 class str33kr : public AppBasic {
 public:
-	void	prepareSettings( Settings *settings );
-	void	setup();
-	void	update();
-	void	draw();
-	void	keyDown( KeyEvent event );
-	void	mouseMove( MouseEvent event );
-	void	mouseDown( MouseEvent event );
-	void	mouseDrag( MouseEvent event );
-	void	mouseUp( MouseEvent event );
-	void	resetFBOs();
-	
-	params::InterfaceGl		mParams0;
-    params::InterfaceGl		mParams1;
+    void	prepareSettings( Settings *settings );
+    void	setup();
+    void	update();
+    void	draw();
+    void	keyDown( KeyEvent event );
+    void	mouseMove( MouseEvent event );
+    void	mouseDown( MouseEvent event );
+    void	mouseDrag( MouseEvent event );
+    void	mouseUp( MouseEvent event );
+    void	resetFBOs();
     
-	int				mCurrentFBO;
-	int				mOtherFBO;
-	gl::Fbo			mFBOs[2];
-    gl::GlslProg    mShriner;
-	gl::Texture		mTexture;
-    gl::Texture     mBaseTex; // working image
-	
-	Vec2f			mMouse;
-	bool			mMousePressed;
-	
-	float			mReactionU;
-	float			mReactionV;
-	float			mReactionK;
-	float			mReactionF;
-    float           mThreshold;
-	float           mDecay;
-    float           mSaturation;
+    params::InterfaceGl	mParams1;
     
-	static const int		FBO_WIDTH = SIZE, FBO_HEIGHT = SIZE;
+	int mCurrentFBO;
+	int	mOtherFBO;
+	gl::Fbo	mFBOs[2];
+    gl::GlslProg mShriner;
+	gl::Texture	mTexture;
+    gl::Texture mBaseTex; // working image
+	
+	Vec2f mMouse;
+	bool mMousePressed;
+	
+    float mThreshold;
+	float mDecay;
+    float mSaturation;
+    
+	static const int FBO_WIDTH  = WIDTH;
+    static const int FBO_HEIGHT = HEIGHT;
     
 private:
-    vector<Capture>		mCaptures;
+    vector<Capture>	mCaptures;
 	vector<gl::Texture>	mTextures;
 	vector<gl::Texture>	mNameTextures;
-	vector<Surface>		mRetainedSurfaces;
+	vector<Surface>	mRetainedSurfaces;
     
 };
 
 void str33kr::prepareSettings( Settings *settings )
 {
-	settings->setWindowSize( SIZE, SIZE );
+	settings->setWindowSize( FBO_WIDTH, FBO_HEIGHT );
 	settings->setFrameRate( 60.0f );
 }
 
@@ -116,32 +119,16 @@ void str33kr::setup()
 		}
 	}
     
-    // setup fbos / gl
-	mReactionU = 0.25f;
-	mReactionV = 0.04f;
-	mReactionK = 0.047f;
-	mReactionF = 0.1f;
-    
 	mMousePressed = false;
     
     mThreshold = 0.7f;
 	mDecay = 0.002f;
     mSaturation = 12.0f;
-    
-	// Setup the parameters
-    /*
-	mParams0 = params::InterfaceGl( "Parameters", Vec2i( 175, 100 ) );
-	mParams0.addParam( "Reaction u", &mReactionU, "min=0.0 max=0.4 step=0.01 keyIncr=u keyDecr=U" );
-	mParams0.addParam( "Reaction v", &mReactionV, "min=0.0 max=0.4 step=0.01 keyIncr=v keyDecr=V" );
-	mParams0.addParam( "Reaction k", &mReactionK, "min=0.0 max=1.0 step=0.001 keyIncr=k keyDecr=K" );	
-	mParams0.addParam( "Reaction f", &mReactionF, "min=0.0 max=1.0 step=0.001 keyIncr=f keyDecr=F" );
-    */
-    
-    mParams1 = params::InterfaceGl( "Shriner", Vec2i( 175, 100 ) );
+        
+    mParams1 = params::InterfaceGl( "Str33kr", Vec2i( 175, 100 ) );
 	mParams1.addParam( "Threshold  T", &mThreshold, "min=0.0 max=1.0 step=0.05 keyIncr=T keyDecr=t" );
 	mParams1.addParam( "DecayRate  D", &mDecay, "min=0.0 max=0.02 step=0.001 keyIncr=D keyDecr=d" );
-	mParams1.addParam( "Saturation S", &mSaturation, "min=0.0 max=100.0 step=1.0 keyIncr=S keyDecr=s" );
-	
+	mParams1.addParam( "Saturation S", &mSaturation, "min=0.0 max=100.0 step=1.0 keyIncr=S keyDecr=s" );	
 	gl::Fbo::Format format;
 	format.enableDepthBuffer( false );
 	
@@ -156,7 +143,7 @@ void str33kr::setup()
 	mTexture.setMinFilter( GL_LINEAR );
 	mTexture.setMagFilter( GL_LINEAR );
     
-    mBaseTex = gl::Texture( SIZE, SIZE );
+    mBaseTex = gl::Texture( FBO_WIDTH, FBO_HEIGHT );
     mBaseTex.setWrap( GL_REPEAT, GL_REPEAT );
 	mBaseTex.setMinFilter( GL_LINEAR );
 	mBaseTex.setMagFilter( GL_LINEAR );
@@ -210,6 +197,7 @@ void str33kr::update()
     mFBOs[0].bindTexture( 2 );
 }
 
+
 void str33kr::draw()
 {
 	//gl::clear( ColorA( 0, 0, 0, 0 ) );
@@ -217,6 +205,7 @@ void str33kr::draw()
 	gl::setViewport( getWindowBounds() );
     
     gl::draw( mTexture, getWindowBounds() );
+    
     gl::enableAlphaBlending();
     gl::enableAdditiveBlending();
     gl::draw( mFBOs[mCurrentFBO].getTexture(), getWindowBounds() );

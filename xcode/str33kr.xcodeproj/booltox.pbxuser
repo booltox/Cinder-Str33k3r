@@ -2,9 +2,9 @@
 {
 	00BAE6590E7ED9C10018A608 /* str33kr.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {861, 3315}}";
-			sepNavSelRange = "{4213, 0}";
-			sepNavVisRange = "{4100, 894}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 3250}}";
+			sepNavSelRange = "{970, 0}";
+			sepNavVisRange = "{585, 1056}";
 			sepNavWindowFrame = "{{297, 63}, {1268, 1104}}";
 		};
 	};
@@ -18,7 +18,7 @@
 	};
 	00C3E79111002BFE00F6B0F0 /* Resources.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 619}}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 613}}";
 			sepNavSelRange = "{141, 0}";
 			sepNavVisRange = "{0, 387}";
 			sepNavWindowFrame = "{{187, -94}, {1519, 1092}}";
@@ -32,7 +32,7 @@
 			8D1107260486CEB800E47090 /* str33kr */,
 		);
 		breakpoints = (
-			959EA2E211E8BC3F00C26B1C /* str33kr.cpp:153 */,
+			959EA2E211E8BC3F00C26B1C /* str33kr.cpp:144 */,
 		);
 		codeSenseManager = 95AC4511119FD5AC007FB776 /* Code sense */;
 		executables = (
@@ -83,8 +83,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 304276017;
-			PBXWorkspaceStateSaveDate = 304276017;
+			PBXPerProjectTemplateStateSaveDate = 304575434;
+			PBXWorkspaceStateSaveDate = 304575434;
 		};
 		perUserProjectItems = {
 			951F5A1F11E000F000733581 /* PBXTextBookmark */ = 951F5A1F11E000F000733581 /* PBXTextBookmark */;
@@ -94,9 +94,9 @@
 			959EA42B11E8F19000C26B1C /* PBXTextBookmark */ = 959EA42B11E8F19000C26B1C /* PBXTextBookmark */;
 			959EA46211E994BF00C26B1C /* PBXTextBookmark */ = 959EA46211E994BF00C26B1C /* PBXTextBookmark */;
 			95BE9BD41222F05100B1DD75 /* PBXTextBookmark */ = 95BE9BD41222F05100B1DD75 /* PBXTextBookmark */;
-			95BE9BD51222F05100B1DD75 /* PBXTextBookmark */ = 95BE9BD51222F05100B1DD75 /* PBXTextBookmark */;
-			95BE9BD61222F05100B1DD75 /* PBXTextBookmark */ = 95BE9BD61222F05100B1DD75 /* PBXTextBookmark */;
-			95BE9BD71222F05100B1DD75 /* PBXTextBookmark */ = 95BE9BD71222F05100B1DD75 /* PBXTextBookmark */;
+			95E167201227751100310406 /* PBXTextBookmark */ = 95E167201227751100310406 /* PBXTextBookmark */;
+			95E167211227751100310406 /* XCBuildMessageTextBookmark */ = 95E167211227751100310406 /* XCBuildMessageTextBookmark */;
+			95E167441227772100310406 /* PBXTextBookmark */ = 95E167441227772100310406 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 95AC4510119FD5AC007FB776 /* Source Control */;
 		userBuildSettings = {
@@ -133,7 +133,7 @@
 		isa = PBXBookmark;
 		fRef = 959EA13E11E6DA9200C26B1C /* starter.jpg */;
 	};
-	959EA2E211E8BC3F00C26B1C /* str33kr.cpp:153 */ = {
+	959EA2E211E8BC3F00C26B1C /* str33kr.cpp:144 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -145,7 +145,7 @@
 		functionName = "RDiffusionApp::setup()";
 		hitCount = 1;
 		ignoreCount = 0;
-		lineNumber = 153;
+		lineNumber = 144;
 		modificationTime = 301431081.805453;
 		originalNumberOfMultipleMatches = 1;
 		state = 1;
@@ -252,27 +252,7 @@
 		vrLen = 119;
 		vrLoc = 0;
 	};
-	95BE9BD51222F05100B1DD75 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 00BAE6590E7ED9C10018A608 /* str33kr.cpp */;
-		name = "str33kr.cpp: 153";
-		rLen = 0;
-		rLoc = 4213;
-		rType = 0;
-		vrLen = 1679;
-		vrLoc = 3621;
-	};
-	95BE9BD61222F05100B1DD75 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 00C3E79111002BFE00F6B0F0 /* Resources.h */;
-		name = "Resources.h: 4";
-		rLen = 0;
-		rLoc = 141;
-		rType = 0;
-		vrLen = 386;
-		vrLoc = 0;
-	};
-	95BE9BD71222F05100B1DD75 /* PBXTextBookmark */ = {
+	95E167201227751100310406 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 00C3E79111002BFE00F6B0F0 /* Resources.h */;
 		name = "Resources.h: 5";
@@ -281,5 +261,24 @@
 		rType = 0;
 		vrLen = 387;
 		vrLoc = 0;
+	};
+	95E167211227751100310406 /* XCBuildMessageTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "'bAsymm' was not declared in this scope";
+		fRef = 00BAE6590E7ED9C10018A608 /* str33kr.cpp */;
+		fallbackIsa = XCBuildMessageTextBookmark;
+		rLen = 1;
+		rLoc = 121;
+		rType = 1;
+	};
+	95E167441227772100310406 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 00BAE6590E7ED9C10018A608 /* str33kr.cpp */;
+		name = "str33kr.cpp: 39";
+		rLen = 0;
+		rLoc = 970;
+		rType = 0;
+		vrLen = 1056;
+		vrLoc = 585;
 	};
 }
