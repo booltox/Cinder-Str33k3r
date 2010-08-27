@@ -1,4 +1,4 @@
-Str33ker is a light painting application that is built using the Cinder library. It simulates long exposure light painting photography.
+Str33ker is a light painting application that is built using the Cinder library. It simulates long exposure light painting photography using frame-buffer objects (fbo) and a glsl pixel shader.
 
-To build this code put it in the samples directory of your cinder heirarchy.
+To build this code put it in the samples directory of your Cinder heirarchy.
 
